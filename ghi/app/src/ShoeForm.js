@@ -42,17 +42,8 @@ class ShoeForm extends React.Component {
         this.setState({bin: value})
     }
 
-    async componentDidMount() {
-        const url = "http://localhost:8100/api/bins/";
-        const response = await fetch(url);
-        if (response.ok) {
-            const data = await response.json();
-            this.setState({ bins: data.bins });
-        }
-    }
-
     async handleSubmit(event) {
-        event.preventDefault();
+        // event.preventDefault();
         const data = {...this.state};
         data.model_name = data.modelName;
         data.picture_URL = data.pictureURL;
@@ -69,6 +60,7 @@ class ShoeForm extends React.Component {
                 "Content-Type": "application/json",
             },
         };
+        
         const response = await fetch(shoeUrl, fetchConfig);
         if (response.ok) {
             const newShoe = await response.json();
@@ -76,12 +68,21 @@ class ShoeForm extends React.Component {
 
             const cleared = {
                 manufacturer: '',
-                modelName: '',
+                model_name: '',
                 color: '',
-                pictureURL: '',
-                bin: ''
+                picture_URL: '',
+                bin: '',
             }
-            this.setState(cleared);
+            this.setState(cleared)
+        }
+    }
+
+    async componentDidMount() {
+        const url = "http://localhost:8100/api/bins/";
+        const response = await fetch(url);
+        if (response.ok) {
+            const data = await response.json();
+            this.setState({ bins: data.bins });
         }
     }
 
@@ -121,7 +122,7 @@ class ShoeForm extends React.Component {
                         <option value="">Bin</option>
                         {this.state.bins.map(bin => {
                             return (
-                                <option key={bin.id} value={bin.id}> {bin.href} </option>
+                                <option key={bin.id} value={bin.href}> {bin.closet_name} </option>
                             );
                         })}
                         </select>
