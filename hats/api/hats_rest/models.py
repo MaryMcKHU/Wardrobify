@@ -1,3 +1,21 @@
 from django.db import models
 
-# Create your models here.
+
+class LocationVO(models.Model):
+    closet_name = models.CharField(max_length=100)
+    section_number = models.PositiveSmallIntegerField(null=True, blank=True)
+    shelf_number = models.PositiveSmallIntegerField(null=True, blank=True)
+    import_href = models.CharField(max_length=200, unique=True)
+
+
+class Hat(models.Model):
+    fabric = models.CharField(max_length=100)
+    style = models.CharField(max_length=100)
+    color = models.CharField(max_length=100)
+    picture = models.URLField(null=True)
+    location = models.ForeignKey(
+        LocationVO,
+        related_name="hats",
+        on_delete=models.PROTECT,
+        null=True,
+    )
