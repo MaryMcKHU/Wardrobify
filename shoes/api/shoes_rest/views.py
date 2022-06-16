@@ -35,7 +35,9 @@ class ShoeDetailEncoder(ModelEncoder):
         "manufacturer", 
         "model_name", 
         "color", 
-        "picture_URL"]
+        "picture_URL",
+        "bin"
+        ]
     encoders = {
         "bin": BinVODetailEncoder(),
     }
@@ -50,7 +52,7 @@ def api_list_shoes(request, bin_vo_id=None):
             shoes = Shoe.objects.all()
         return JsonResponse(
             {"shoes": shoes},
-            encoder=ShoeListEncoder,
+            encoder=ShoeDetailEncoder,
         )
 
     else:
@@ -68,7 +70,7 @@ def api_list_shoes(request, bin_vo_id=None):
         shoe = Shoe.objects.create(**content)
         return JsonResponse(
             shoe,
-            encoder=ShoeListEncoder,
+            encoder=ShoeDetailEncoder,
             safe=False,
         )
 
