@@ -9,7 +9,11 @@ import json
 # Create your views here.
 class BinVODetailEncoder(ModelEncoder):
     model = BinVO
-    properties = ["id", "import_href"]
+    properties = [
+        "closet_name", 
+        "bin_number", 
+        "bin_size"
+    ]
 
     
 class ShoeListEncoder(ModelEncoder):
@@ -21,13 +25,17 @@ class ShoeListEncoder(ModelEncoder):
         "picture_URL",
         ]
 
-    def get_extra_data(self, o):
-        return {"bin": o.bin.id}
+    # def get_extra_data(self, o):
+    #     return {"bin": o.bin.bin_number}
 
 
 class ShoeDetailEncoder(ModelEncoder):
     model = Shoe
-    properties = ["manufacturer", "model_name", "color", "picture_URL"]
+    properties = [
+        "manufacturer", 
+        "model_name", 
+        "color", 
+        "picture_URL"]
     encoders = {
         "bin": BinVODetailEncoder(),
     }
