@@ -11,8 +11,6 @@ class LocationVOEncoder(ModelEncoder):
     properties = [
         "import_href",
         "closet_name",
-        "section_number",
-        "shelf_number",
     ]
 
 
@@ -24,9 +22,10 @@ class HatEncoder(ModelEncoder):
         "color",
         "picture",
         "location",
+        "id",
     ]
     encoders = {
-        "location": LocationVOEncoder
+        "location": LocationVOEncoder()
     }
 
 
@@ -40,7 +39,7 @@ class HatDetailEncoder(ModelEncoder):
         "location",
     ]
     encoders = {
-        "location": LocationVOEncoder
+        "location": LocationVOEncoder()
     }
 
 
@@ -68,7 +67,7 @@ def api_hats(request):
 
         hat = Hat.objects.create(**content)
         return JsonResponse(
-            {"hat": hat},
+            hat,
             encoder=HatDetailEncoder,
             safe=False,
         )
