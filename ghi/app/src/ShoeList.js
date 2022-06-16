@@ -1,8 +1,9 @@
 import React from 'react';
 
 function ShoeList(props) {
+
     return (
-        <table className="table">
+        <table className="ShoeList">
             <thead>
                 <tr>
                     <th>Manufacturer</th>
@@ -15,12 +16,12 @@ function ShoeList(props) {
             <tbody>
                 {props.shoes.map(shoe => {
                     return (
-                        <tr key={shoe.id}>
-                            <td>{ shoe.manufacturer }</td>
-                            <td>{ shoe.modelName }</td>
-                            <td>{ shoe.color }</td>
-                            <td><img src={shoe.picture_URL}/></td>
-                            <td>{ shoe.bin.href }</td>
+                        <tr key={ props.shoe.id }>
+                            <td>{ props.shoe.manufacturer }</td>
+                            <td>{ props.shoe.model_name }</td>
+                            <td>{ props.shoe.color }</td>
+                            {/* <td><img src={ props.shoe.picture_URL }/></td> */}
+                            {/* <td>{ props.shoe.bin.bin_number }</td> */}
                         </tr>
                     );
                 })}

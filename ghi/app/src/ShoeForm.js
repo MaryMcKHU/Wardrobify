@@ -42,6 +42,15 @@ class ShoeForm extends React.Component {
         this.setState({bin: value})
     }
 
+    async componentDidMount() {
+        const url = "http://localhost:8100/api/bins/";
+        const response = await fetch(url);
+        if (response.ok) {
+            const data = await response.json();
+            this.setState({ bins: data.bins });
+        }
+    }
+
     async handleSubmit(event) {
         event.preventDefault();
         const data = {...this.state};
@@ -52,7 +61,7 @@ class ShoeForm extends React.Component {
         delete data.bins;
         console.log("data", data);
 
-        const BinUrl = "http://localhost:8100/api/bins/";
+        const shoeUrl = "http://localhost:8080/api/shoes/";
         const fetchConfig = {
             method: "post",
             body: JSON.stringify(data),
@@ -60,29 +69,19 @@ class ShoeForm extends React.Component {
                 "Content-Type": "application/json",
             },
         };
-        const response = await fetch(BinUrl, fetchConfig);
+        const response = await fetch(shoeUrl, fetchConfig);
         if (response.ok) {
-            const newBin = await response.json();
-            console.log(newBin);
+            const newShoe = await response.json();
+            console.log(newShoe);
 
             const cleared = {
                 manufacturer: '',
                 modelName: '',
                 color: '',
                 pictureURL: '',
-                bin: '',
-            };
+                bin: ''
+            }
             this.setState(cleared);
-        }
-    }
-    async componentDidMount() {
-        const url = "http://localhost:8080/api/shoes/";
-
-        const response = await fetch(url);
-
-        if (response.ok) {
-            const data = await response.json();
-            this.setState({bins: data.bins});
         }
     }
 
@@ -110,7 +109,7 @@ class ShoeForm extends React.Component {
                         type="text" name="color" id="color" className="form-control" value={this.state.color}/>
                         <label htmlFor="color">Color</label>
                     </div>
-                    <div className="mb-3">
+                    <div className="form-floating mb-3">
                         <label htmlFor="picture_url" className="form-label">Picture URL</label>
                         <input className="form-control" name="description" id="description" type="text"
                         onChange={this.handlePictureURLChange} value={this.state.pictureURL}>

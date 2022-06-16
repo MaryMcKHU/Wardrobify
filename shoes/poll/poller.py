@@ -32,7 +32,6 @@ def poll():
         print('Shoes poller polling for data')
         try:
             get_bins()
-            pass
         except Exception as e:
             print(e, file=sys.stderr)
         time.sleep(60)
