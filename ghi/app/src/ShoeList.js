@@ -14,6 +14,7 @@ function ShoeList(props) {
                     <th>Closet Name</th>
                     <th>Bin Number</th>
                     <th>Bin Size</th>
+                    <th>Delete Shoe</th>
                 </tr>
             </thead>
             <tbody>
@@ -28,6 +29,9 @@ function ShoeList(props) {
                             <td>{ shoe.bin.closet_name }</td>
                             <td>{ shoe.bin.bin_number }</td>
                             <td>{ shoe.bin.bin_size }</td>
+                            <td className="delete">
+                                <button onClick={() => this.delete(shoe.id)}>Delete</button>
+                            </td>
                         </tr>
                     );
                 })}
