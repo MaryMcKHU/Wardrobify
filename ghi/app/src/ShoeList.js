@@ -14,11 +14,10 @@ function ShoeList(props) {
                     <th>Closet Name</th>
                     <th>Bin Number</th>
                     <th>Bin Size</th>
-                    <th>Delete Shoe</th>
                 </tr>
             </thead>
             <tbody>
-                {props.data.shoes.map((shoe, i) => {
+                {props.data.shoes.map(shoe => {
                     return (
                         <tr key={ shoe.id }>
                             <td>{ shoe.manufacturer }</td>
@@ -28,9 +27,6 @@ function ShoeList(props) {
                             <td>{ shoe.bin.closet_name }</td>
                             <td>{ shoe.bin.bin_number }</td>
                             <td>{ shoe.bin.bin_size }</td>
-                            <td className="DeleteShoe" >
-                                <button onClick={() => { this.onClick(shoe.id) }}>Delete</button>
-                            </td>
                         </tr>
                     );
                 })}

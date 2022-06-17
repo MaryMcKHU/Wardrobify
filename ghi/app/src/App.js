@@ -3,6 +3,7 @@ import MainPage from './MainPage';
 import Nav from './Nav';
 import ShoeForm from './ShoeForm';
 import ShoeList from './ShoeList';
+import DeleteShoe from './DeleteShoe';
 import React from 'react';
 
 function App(props) {
@@ -19,9 +20,9 @@ function App(props) {
           <Route path="shoes">
             <Route path="new" element={<ShoeForm />} />
           </Route>
-          {/* <Route path="shoes">
-            <Route path="delete" element={<DeleteShoe/>} />
-          </Route> */}
+          <Route path="shoes">
+            <Route path="delete" element={<DeleteShoe />} />
+          </Route>
         </Routes>
     </BrowserRouter>
   );
