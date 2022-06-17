@@ -11,6 +11,8 @@ class LocationVOEncoder(ModelEncoder):
     properties = [
         "import_href",
         "closet_name",
+        "shelf_number",
+        "section_number",
     ]
 
 
