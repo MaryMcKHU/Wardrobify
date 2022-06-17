@@ -4,7 +4,6 @@ import Nav from './Nav';
 import ShoeForm from './ShoeForm';
 import ShoeList from './ShoeList';
 import React from 'react';
-import { useState } from 'react';
 
 function App(props) {
   if (props.shoes === undefined) {
@@ -20,9 +19,9 @@ function App(props) {
           <Route path="shoes">
             <Route path="new" element={<ShoeForm />} />
           </Route>
-          <Route path="shoes">
+          {/* <Route path="shoes">
             <Route path="delete" element={<DeleteShoe/>} />
-          </Route>
+          </Route> */}
         </Routes>
     </BrowserRouter>
   );

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function ShoeList(props) {
     console.log(props)
@@ -18,8 +18,7 @@ function ShoeList(props) {
                 </tr>
             </thead>
             <tbody>
-                {console.log(props.data.shoes)}
-                {props.data.shoes.map(shoe => {
+                {props.data.shoes.map((shoe, i) => {
                     return (
                         <tr key={ shoe.id }>
                             <td>{ shoe.manufacturer }</td>
@@ -29,8 +28,8 @@ function ShoeList(props) {
                             <td>{ shoe.bin.closet_name }</td>
                             <td>{ shoe.bin.bin_number }</td>
                             <td>{ shoe.bin.bin_size }</td>
-                            <td className="delete">
-                                <button onClick={() => this.delete(shoe.id)}>Delete</button>
+                            <td className="DeleteShoe" >
+                                <button onClick={() => { this.onClick(shoe.id) }}>Delete</button>
                             </td>
                         </tr>
                     );
