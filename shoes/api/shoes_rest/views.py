@@ -79,5 +79,6 @@ def api_list_shoes(request, bin_vo_id=None):
 
 @require_http_methods(["DELETE"])
 def api_show_shoes(request, pk):
-    count, _ = Shoe.objects.filter(id=pk).delete()
-    return JsonResponse({"deleted": count > 0})
+    if request.method == "DELETE":
+        count, _ = Shoe.objects.filter(id=pk).delete()
+        return JsonResponse({"deleted": count > 0})

@@ -34,7 +34,7 @@ class HatEncoder(ModelEncoder):
 class HatDetailEncoder(ModelEncoder):
     model = Hat
     properties = [
-        "id"
+        "id",
         "fabric",
         "style",
         "color",
