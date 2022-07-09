@@ -34,6 +34,7 @@ class HatEncoder(ModelEncoder):
 class HatDetailEncoder(ModelEncoder):
     model = Hat
     properties = [
+        "id"
         "fabric",
         "style",
         "color",
@@ -46,13 +47,15 @@ class HatDetailEncoder(ModelEncoder):
 
 
 @require_http_methods(["GET", "POST"])
-def api_hats(request):
+def api_hats(request, location_vo_id=None):
     if request.method == "GET":
-        hats = Hat.objects.all()
+        if location_vo_id is not None:
+            hats = Hat.objects.filter(location=location_vo_id)
+        else:
+            hats = Hat.objects.all()
         return JsonResponse(
-            hats,
-            encoder=HatEncoder,
-            safe=False,
+            {"hats": hats},
+            encoder=HatDetailEncoder,
         )
     else:
         content = json.loads(request.body)

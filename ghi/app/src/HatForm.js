@@ -93,7 +93,7 @@ class HatForm extends React.Component {
                         <input onChange={this.handleFabricChange} placeholder="Fabric" 
                         required type="text" name="name" 
                         id="fabric" className="form-control" value={this.state.fabric}/>
-                        <label htmlFor="fabric">fabric</label>
+                        <label htmlFor="fabric">Fabric</label>
                     </div>
                     <div className="form-floating mb-3">
                         <input onChange={this.handleStyleChange} placeholder="Style" 
